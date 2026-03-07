@@ -1,0 +1,10 @@
+<Solution>
+  <Project Path="GenshinTrial.Generator.Infrastructure/GenshinTrialGenerator.Infrastructure.csproj" />
+  <Project Path="GenshinTrialGenerator.Application/GenshinTrialGenerator.Application.csproj" />
+  <Project Path="genshintrialgenerator.client/genshintrialgenerator.client.esproj">
+    <Build />
+    <Deploy />
+  </Project>
+  <Project Path="GenshinTrialGenerator.Core/GenshinTrialGenerator.Core.csproj" />
+  <Project Path="GenshinTrialGenerator.Server/GenshinTrialGenerator.Server.csproj" />
+</Solution>
