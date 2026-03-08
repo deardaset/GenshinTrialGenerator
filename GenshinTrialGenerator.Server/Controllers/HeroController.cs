@@ -25,7 +25,7 @@ namespace GenshinTrialGenerator.Server.Controllers
 
         [HttpPut]
         [Route("{guid}")]
-        public async Task<IActionResult> UpdateHeroAsync([FromRoute] Guid guid, [FromServices] IUpdateHeroService service, UpdateHeroRequest request)
+        public async Task<IActionResult> UpdateHeroAsync([FromRoute] Guid guid, [FromServices] IUpdateHeroService service, [FromForm] UpdateHeroRequest request)
         {
             var result = await service.RunAsync(guid, request);
             return Ok(result);
