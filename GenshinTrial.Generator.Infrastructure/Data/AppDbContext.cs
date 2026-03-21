@@ -1,6 +1,5 @@
 ﻿using GenshinTrial.Generator.Infrastructure.Data.Mappings;
-using GenshinTrialGenerator.Core.Entities;
-using GenshinTrialGenerator.Core.Enums;
+using GenshinTrialGenerator.Infrastructure.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

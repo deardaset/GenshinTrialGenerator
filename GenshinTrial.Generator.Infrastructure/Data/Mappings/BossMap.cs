@@ -1,4 +1,4 @@
-﻿using GenshinTrialGenerator.Core.Entities;
+﻿using GenshinTrialGenerator.Infrastructure.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;

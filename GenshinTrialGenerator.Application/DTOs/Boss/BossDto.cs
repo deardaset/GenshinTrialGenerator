@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GenshinTrialGenerator.Application.DTOs.Boss
 {
-    public class BossModel
+    public class BossDto
     {
         public Guid Guid { get; set; } = Guid.NewGuid();
         public required string Name { get; set; }

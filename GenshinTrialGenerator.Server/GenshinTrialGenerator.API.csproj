@@ -7,7 +7,7 @@
     <SpaRoot>..\genshintrialgenerator.client</SpaRoot>
     <SpaProxyLaunchCommand>npm run dev</SpaProxyLaunchCommand>
     <SpaProxyServerUrl>https://localhost:58505</SpaProxyServerUrl>
-  </PropertyGroup>
+  </PropertyGroup>  
 
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="12.1.1" />

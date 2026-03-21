@@ -3,11 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace GenshinTrialGenerator.Core.Entities
+namespace GenshinTrialGenerator.Infrastructure.Entities
 {
     public class HeroEntity
     {
-        public Guid Guid { get; set; } = Guid.NewGuid();
+        public Guid Guid { get; set; }
         public required string Name { get; set; }
         public string? Description { get; set; }
         public HeroRarityType Rarity { get; set; }

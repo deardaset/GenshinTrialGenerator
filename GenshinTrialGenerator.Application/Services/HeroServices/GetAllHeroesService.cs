@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using GenshinTrialGenerator.Application.DTOs.Hero;
 using GenshinTrialGenerator.Application.Interfaces.HeroServices;
-using GenshinTrialGenerator.Core.Entities;
 using GenshinTrialGenerator.Core.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -11,9 +10,9 @@ namespace GenshinTrialGenerator.Application.Services.HeroServices
 {
     public class GetAllHeroesService(IHeroRepository repository, IMapper mapper) : IGetAllHeroesService
     {
-        public async Task<List<HeroModel>> RunAsync()
+        public async Task<List<HeroDto>> RunAsync()
         {
-            var heroes = mapper.Map<List<HeroModel>>(await repository.GetAllHeroesAsync());
+            var heroes = mapper.Map<List<HeroDto>>(await repository.GetAllHeroesAsync());
             return heroes;
         }
     }

@@ -1,6 +1,7 @@
-﻿using GenshinTrialGenerator.Application.DTOs.Hero;
+﻿using AutoMapper;
+using GenshinTrialGenerator.Application.DTOs.Hero;
 using GenshinTrialGenerator.Application.Interfaces.HeroServices;
-using GenshinTrialGenerator.Core.Entities;
+using GenshinTrialGenerator.Core.Models;
 using GenshinTrialGenerator.Core.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -8,37 +9,24 @@ using System.Text;
 
 namespace GenshinTrialGenerator.Application.Services.HeroServices
 {
-    public class CreateHeroService(IHeroRepository repository) : ICreateHeroService
+    public class CreateHeroService(IHeroRepository repository, IMapper mapper) : ICreateHeroService
     {
-        public async Task<HeroModel> RunAsync(CreateHeroRequest request)
+        public async Task<HeroDto> RunAsync(CreateHeroRequest request)
         {
-            //Create
-            var hero = new HeroEntity
-            {
-                Name = request.Name,
-                Description = request.Description,
-                Rarity = request.Rarity,
-                Weapon = request.Weapon,
-                Element = request.Element,
-                Model = request.Model,
-                TeamBonus = request.TeamBonus,
-                Role = request.Role
-            };
+            var hero = new Hero(
+                name: request.Name,
+                description: request.Description,
+                rarity: request.Rarity,
+                weapon: request.Weapon,
+                element: request.Element,
+                model: request.Model,
+                teamBonus: request.TeamBonus,
+                role: request.Role
+                );
+
             await repository.CreateHeroAsync(hero);
 
-            //Response
-            return new HeroModel
-            {
-                Guid = hero.Guid,
-                Name = hero.Name,
-                Description = hero.Description,
-                Rarity = hero.Rarity,
-                Weapon = hero.Weapon,
-                Element = hero.Element,
-                Model = hero.Model,
-                TeamBonus = hero.TeamBonus,
-                Role = hero.Role
-            };
+            return mapper.Map<HeroDto>(hero);
         }
     }
 }

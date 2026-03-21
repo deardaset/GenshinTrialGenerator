@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace GenshinTrialGenerator.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260306162509_InitMigration")]
-    partial class InitMigration
+    [Migration("20260321150023_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace GenshinTrialGenerator.Infrastructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("GenshinTrialGenerator.Core.Entities.BossEntity", b =>
+            modelBuilder.Entity("GenshinTrialGenerator.Infrastructure.Entities.BossEntity", b =>
                 {
                     b.Property<Guid>("Guid")
                         .ValueGeneratedOnAdd()
@@ -66,7 +66,7 @@ namespace GenshinTrialGenerator.Infrastructure.Migrations
                     b.ToTable("Bosses", (string)null);
                 });
 
-            modelBuilder.Entity("GenshinTrialGenerator.Core.Entities.HeroEntity", b =>
+            modelBuilder.Entity("GenshinTrialGenerator.Infrastructure.Entities.HeroEntity", b =>
                 {
                     b.Property<Guid>("Guid")
                         .ValueGeneratedOnAdd()

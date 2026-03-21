@@ -7,6 +7,6 @@ namespace GenshinTrialGenerator.Application.Interfaces.BossServices
 {
     public interface IUpdateBossService
     {
-        public Task<BossModel> RunAsync(Guid guid, UpdateBossRequest request);
+        public Task<BossDto> RunAsync(Guid guid, UpdateBossRequest request);
     }
 }

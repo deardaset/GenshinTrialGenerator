@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using GenshinTrialGenerator.Application.DTOs.Boss;
-using GenshinTrialGenerator.Core.Entities;
+using GenshinTrialGenerator.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,8 +11,8 @@ namespace GenshinTrialGenerator.Application.Mappings
     {
         public BossProfile()
         {
-            CreateMap<BossEntity, BossModel>();
-            CreateMap<BossModel, BossEntity>();
+            CreateMap<Boss, BossDto>();
+            CreateMap<BossDto, Boss>();
         }
     }
 }

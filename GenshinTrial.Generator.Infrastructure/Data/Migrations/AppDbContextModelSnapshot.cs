@@ -22,7 +22,7 @@ namespace GenshinTrialGenerator.Infrastructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("GenshinTrialGenerator.Core.Entities.BossEntity", b =>
+            modelBuilder.Entity("GenshinTrialGenerator.Infrastructure.Entities.BossEntity", b =>
                 {
                     b.Property<Guid>("Guid")
                         .ValueGeneratedOnAdd()
@@ -63,7 +63,7 @@ namespace GenshinTrialGenerator.Infrastructure.Migrations
                     b.ToTable("Bosses", (string)null);
                 });
 
-            modelBuilder.Entity("GenshinTrialGenerator.Core.Entities.HeroEntity", b =>
+            modelBuilder.Entity("GenshinTrialGenerator.Infrastructure.Entities.HeroEntity", b =>
                 {
                     b.Property<Guid>("Guid")
                         .ValueGeneratedOnAdd()

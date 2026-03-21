@@ -10,9 +10,9 @@ namespace GenshinTrialGenerator.Application.Services.BossServices
 {
     public class GetAllBossesService(IBossRepository repository, IMapper mapper) : IGetAllBossesService
     {
-        public async Task<List<BossModel>> RunAsync()
+        public async Task<List<BossDto>> RunAsync()
         {
-            var bosses = mapper.Map<List<BossModel>>(await repository.GetAllBossesAsync());
+            var bosses = mapper.Map<List<BossDto>>(await repository.GetAllBossesAsync());
             return bosses;
         }
     }

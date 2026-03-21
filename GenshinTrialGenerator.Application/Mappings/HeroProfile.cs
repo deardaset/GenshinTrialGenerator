@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using GenshinTrialGenerator.Application.DTOs.Hero;
-using GenshinTrialGenerator.Core.Entities;
+using GenshinTrialGenerator.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,8 +11,8 @@ namespace GenshinTrialGenerator.Application.Mappings
     {
         public HeroProfile()
         {
-            CreateMap<HeroEntity, HeroModel>();
-            CreateMap<HeroModel, HeroEntity>();
+            CreateMap<Hero, HeroDto>();
+            CreateMap<HeroDto, Hero>();
         }
     }
 }

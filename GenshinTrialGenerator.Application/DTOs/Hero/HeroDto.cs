@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GenshinTrialGenerator.Application.DTOs.Hero
 {
-    public class HeroModel
+    public class HeroDto
     {
         public Guid Guid { get; set; }
         public required string Name { get; set; }

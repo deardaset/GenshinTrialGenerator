@@ -1,0 +1,82 @@
+/* ============================================================
+   App.css — Структура приложения, лейаут страниц
+   Подключается в App.jsx
+   ============================================================ */
+
+/* ---- Корневая обёртка приложения ---- */
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ---- Основная область контента (под хедером) ---- */
+.app-content {
+  flex: 1;
+  padding-top: 2.5rem;
+  padding-bottom: 4rem;
+}
+
+/* ---- Универсальный контейнер страницы ---- */
+.page-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--page-padding);
+}
+
+/* ---- Заголовок страницы (Hero-секция) ---- */
+.page-hero {
+  padding: 3rem 0 2.5rem;
+  border-bottom: 1px solid var(--border-thin);
+  margin-bottom: 2.5rem;
+}
+
+.page-hero__title {
+  font-family: "Cinzel", serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--gold-light);
+  letter-spacing: 0.08em;
+  margin-bottom: 0.5rem;
+}
+
+.page-hero__subtitle {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* ---- Сетка карточек (Heroes / Bosses) ---- */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+
+/* ---- Базовая карточка ---- */
+.card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-thin);
+  border-radius: 12px;
+  padding: 1.4rem;
+  transition: border-color var(--transition), background var(--transition), transform var(--transition);
+  cursor: pointer;
+}
+
+.card:hover {
+  background: rgba(200, 169, 126, 0.05);
+  border-color: var(--border-mid);
+  transform: translateY(-2px);
+}
+
+/* ---- Footer ---- */
+.app-footer {
+  text-align: center;
+  padding: 1.5rem;
+  border-top: 1px solid var(--border-thin);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}

@@ -7,6 +7,6 @@ namespace GenshinTrialGenerator.Application.Interfaces.BossServices
 {
     public interface IGetAllBossesService
     {
-        public Task<List<BossModel>> RunAsync();
+        public Task<List<BossDto>> RunAsync();
     }
 }

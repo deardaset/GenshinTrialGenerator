@@ -7,6 +7,6 @@ namespace GenshinTrialGenerator.Application.Interfaces.HeroServices
 {
     public interface ICreateHeroService
     {
-        public Task<HeroModel> RunAsync(CreateHeroRequest request);
+        public Task<HeroDto> RunAsync(CreateHeroRequest request);
     }
 }

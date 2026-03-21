@@ -6,5 +6,5 @@
     <Deploy />
   </Project>
   <Project Path="GenshinTrialGenerator.Core/GenshinTrialGenerator.Core.csproj" />
-  <Project Path="GenshinTrialGenerator.Server/GenshinTrialGenerator.Server.csproj" />
+  <Project Path="GenshinTrialGenerator.Server/GenshinTrialGenerator.API.csproj" />
 </Solution>

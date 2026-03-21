@@ -1,4 +1,4 @@
-﻿using GenshinTrialGenerator.Core.Entities;
+﻿using GenshinTrialGenerator.Infrastructure.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -16,27 +16,6 @@ namespace GenshinTrial.Generator.Infrastructure.Data.Mappings
             builder.Property(h => h.Name)
                 .IsRequired()
                 .HasMaxLength(100);
-
-            //builder.Property(h => h.Description)
-            //    .HasColumnType("text");
-
-            //builder.Property(h => h.Rarity)
-            //    .HasConversion<string>();
-
-            //builder.Property(h => h.Weapon)
-            //    .HasConversion<string>();
-
-            //builder.Property(h => h.Element)
-            //    .HasConversion<string>();
-
-            //builder.Property(h => h.Model)
-            //    .HasConversion<string>();
-
-            //builder.Property(h => h.TeamBonus)
-            //    .HasConversion<string>();
-
-            //builder.Property(h => h.Role)
-            //    .HasConversion<string>();
         }
     }
 }

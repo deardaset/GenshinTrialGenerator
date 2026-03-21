@@ -18,7 +18,7 @@ namespace GenshinTrialGenerator.Server.Exceptions
 
             var error = new
             {
-                id = Guid.NewGuid(),
+                Id = Guid.NewGuid(),
                 StatusCode = statuscode,
                 ErrorMessage = exception.Message
             };

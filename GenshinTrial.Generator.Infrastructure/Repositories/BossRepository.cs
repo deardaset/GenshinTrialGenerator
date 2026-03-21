@@ -1,40 +1,42 @@
 ﻿using GenshinTrial.Generator.Infrastructure.Data;
-using GenshinTrialGenerator.Core.Entities;
+using GenshinTrialGenerator.Core.Models;
 using GenshinTrialGenerator.Core.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using AutoMapper;
+using GenshinTrialGenerator.Infrastructure.Entities;
 
 namespace GenshinTrialGenerator.Infrastructure.Repositories
 {
-    public class BossRepository(AppDbContext context) : IBossRepository
+    public class BossRepository(AppDbContext context, IMapper mapper) : IBossRepository
     {
-        public async Task CreateBossAsync(BossEntity boss)
+        public async Task CreateBossAsync(Boss boss)
         {
-            context.Bosses.Add(boss);
+            context.Bosses.Add(mapper.Map<BossEntity>(boss));
             await context.SaveChangesAsync();
         }
 
-        public async Task DeleteBossAsync(BossEntity boss)
+        public async Task DeleteBossAsync(Boss boss)
         {
-            context.Bosses.Remove(boss);
+            context.Bosses.Remove(mapper.Map<BossEntity>(boss));
             await context.SaveChangesAsync();
         }
 
-        public async Task<List<BossEntity>> GetAllBossesAsync()
+        public async Task<List<Boss>> GetAllBossesAsync()
         {
-            return await context.Bosses.AsNoTracking().ToListAsync();
+            return mapper.Map<List<Boss>>(await context.Bosses.AsNoTracking().ToListAsync());
         }
 
-        public async Task<BossEntity?> GetBossAsync(Guid guid)
+        public async Task<Boss?> GetBossAsync(Guid guid)
         {
-            return await context.Bosses.AsNoTracking().FirstOrDefaultAsync(b => b.Guid == guid);
+            return mapper.Map<Boss>(await context.Bosses.AsNoTracking().FirstOrDefaultAsync(b => b.Guid == guid));
         }
 
-        public async Task UpdateBossAsync(BossEntity boss)
+        public async Task UpdateBossAsync(Boss boss)
         {
-            context.Bosses.Update(boss);
+            context.Bosses.Update(mapper.Map<BossEntity>(boss));
             await context.SaveChangesAsync();
         }
     }
