@@ -1,4 +1,5 @@
-﻿using GenshinTrialGenerator.Application.DTOs.Hero;
+﻿using GenshinTrialGenerator.Application.DTOs;
+using GenshinTrialGenerator.Application.DTOs.Hero;
 using GenshinTrialGenerator.Application.Interfaces.HeroServices;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,9 +18,9 @@ namespace GenshinTrialGenerator.Server.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllHeroes([FromServices] IGetAllHeroesService service)
+        public async Task<IActionResult> GetAllHeroes([FromServices] IGetAllHeroesService service, [FromQuery] GetDataOptionsRequest request)
         {
-            var result = await service.RunAsync();
+            var result = await service.RunAsync(request);
             return Ok(result);
         }
 

@@ -1,4 +1,4 @@
-export async function getHero({page = 1, pageSize = 10, sort, search, element}) {
+export async function getBoss({page = 1, pageSize = 10, sort, search, element}) {
   const params = new URLSearchParams();
 
   params.append('page', page);
@@ -23,8 +23,8 @@ export async function getHero({page = 1, pageSize = 10, sort, search, element}) 
   return response.json();
 }
 
-export async function createHero(formData) {
-  const response = await fetch('/api/hero', {
+export async function createBoss(formData) {
+  const response = await fetch('/api/boss', {
     method: 'POST',
     body: formData
   });
@@ -42,8 +42,8 @@ export async function createHero(formData) {
   return response.json();
 }
 
-export async function updateHero(guid, formData) {
-  const response = await fetch(`/api/hero/${guid}`, {
+export async function updateBoss(guid, formData) {
+  const response = await fetch(`/api/boss/${guid}`, {
     method: 'PUT',
     body: formData
   });
@@ -61,8 +61,8 @@ export async function updateHero(guid, formData) {
   return response.json();
 }
 
-export async function deleteHero(guid) {
-  const response = await fetch(`/api/hero/${guid}`, {
+export async function deleteBoss(guid) {
+  const response = await fetch(`/api/boss/${guid}`, {
     method: 'DELETE'
   });
 

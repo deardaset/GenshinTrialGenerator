@@ -1,0 +1,118 @@
+/* ============================================================
+   EntityCard.css
+   ============================================================ */
+
+.entity-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-thin);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition:
+    transform var(--transition),
+    border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+.entity-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-mid);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* ---- Rarity colour bar on top ---- */
+.entity-card__rarity-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  border-radius: 12px 12px 0 0;
+}
+
+.rarity-5 .entity-card__rarity-bar {
+  background: linear-gradient(90deg, #c8a028, #e8d5a3, #c8a028);
+}
+.rarity-4 .entity-card__rarity-bar {
+  background: linear-gradient(90deg, #9d72c8, #c4a8e8, #9d72c8);
+}
+.rarity-3 .entity-card__rarity-bar {
+  background: linear-gradient(90deg, #4a6fa5, #7eaadc, #4a6fa5);
+}
+
+/* ---- Image ---- */
+.entity-card__img-wrap {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  background: var(--ink-mid);
+  overflow: hidden;
+}
+
+.entity-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.entity-card:hover .entity-card__img {
+  transform: scale(1.06);
+}
+
+.entity-card__img-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Cinzel", serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--gold);
+  opacity: 0.3;
+}
+
+/* ---- Element badge ---- */
+.entity-card__element {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 3px 8px;
+  border-radius: 20px;
+  font-family: "Lato", sans-serif;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--el-color, var(--gold));
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid var(--el-color, var(--gold));
+  backdrop-filter: blur(4px);
+}
+
+/* ---- Footer ---- */
+.entity-card__footer {
+  padding: 0.75rem 0.9rem;
+  border-top: 1px solid var(--border-thin);
+}
+
+.entity-card__name {
+  font-family: "Cinzel", serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-main);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 4px;
+}
+
+.entity-card__stars {
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+  color: var(--gold);
+}
+
+.rarity-5 .entity-card__stars { color: #e8c84a; }
+.rarity-4 .entity-card__stars { color: #9d72c8; }
+.rarity-3 .entity-card__stars { color: #4a9eca; }
