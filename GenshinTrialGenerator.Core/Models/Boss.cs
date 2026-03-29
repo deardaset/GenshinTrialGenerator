@@ -16,6 +16,7 @@ namespace GenshinTrialGenerator.Core.Models
         public RegionType Region { get; private set; }
         public string? Location { get; private set; }
         public BossCategoryType Category { get; private set; }
+        public string? PhotoUrl { get; private set; }
 
         public Boss(
             string name, 
@@ -25,7 +26,8 @@ namespace GenshinTrialGenerator.Core.Models
             RegionType region,
             BossCategoryType category, 
             string? description = null, 
-            string? location = null)
+            string? location = null,
+            string? photoUrl = null)
         {
             if (string.IsNullOrEmpty(name))
                 throw new ArgumentException("Name is required");
@@ -38,6 +40,7 @@ namespace GenshinTrialGenerator.Core.Models
             Category = category;
             Description = description;
             Location = location;
+            PhotoUrl = photoUrl;
         }
 
         public void Update(
@@ -48,7 +51,8 @@ namespace GenshinTrialGenerator.Core.Models
             ElementType? damageType = null,
             bool? hasWeakPoint = null,
             RegionType? region = null,
-            BossCategoryType? category = null)
+            BossCategoryType? category = null,
+            string? photoUrl = null)
         {
             if (name is not null) Name = name;
             if (description is not null) Description = description;
@@ -58,6 +62,7 @@ namespace GenshinTrialGenerator.Core.Models
             if (region is not null) Region = region.Value;
             if (location is not null) Location = location;
             if (category is not null) Category = category.Value;
+            if (photoUrl is not null) PhotoUrl = photoUrl;
         }
     }
 }

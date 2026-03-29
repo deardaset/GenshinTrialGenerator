@@ -27,8 +27,8 @@ export default function EntityCard({ entity, onClick }) {
 
       {/* Image */}
       <div className="entity-card__img-wrap">
-        {entity.imageUrl
-          ? <img src={entity.imageUrl} alt={entity.name} className="entity-card__img" />
+        {entity.photoUrl
+          ? <img src={entity.photoUrl} alt={entity.name} className="entity-card__img" />
           : <div className="entity-card__img-placeholder">
               <span>{entity.name?.[0] ?? '?'}</span>
             </div>

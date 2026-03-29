@@ -1,4 +1,5 @@
 ﻿using GenshinTrialGenerator.Core.Enums;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,5 +16,6 @@ namespace GenshinTrialGenerator.Application.DTOs.Boss
         public RegionType Region { get; set; }
         public string? Location { get; set; }
         public BossCategoryType Category { get; set; }
+        public IFormFile? Photo { get; set; }
     }
 }

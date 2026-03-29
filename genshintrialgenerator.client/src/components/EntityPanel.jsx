@@ -138,8 +138,8 @@ function EntityDetail({ entity, onEdit, onDelete, onClose, deleting }) {
   return (
     <div className="entity-detail">
       <div className="entity-detail__img-wrap">
-        {entity.imageUrl
-          ? <img src={entity.imageUrl} alt={entity.name} />
+        {entity.photoUrl
+          ? <img src={entity.photoUrl} alt={entity.name} />
           : <div className="entity-detail__img-placeholder">{entity.name?.[0]}</div>
         }
         <div className="entity-detail__img-gradient" />

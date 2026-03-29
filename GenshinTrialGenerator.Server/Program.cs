@@ -4,9 +4,11 @@ using System.Text.Json.Serialization;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using GenshinTrialGenerator.Application.DTOs.Hero;
-
-using GenshinTrialGenerator.Server.Extensions;
+using GenshinTrialGenerator.Server.Configuration;
 using GenshinTrialGenerator.Application.Mappings;
+using GenshinTrialGenerator.Infrastructure.Data;
+using GenshinTrialGenerator.Infrastructure.Mappings;
+using GenshinTrialGenerator.API.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,12 +26,15 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddValidatorsFromAssemblyContaining<CreateHeroRequest>();
 
-//Services
+//Configurations
+builder.Services.Configure<YandexStorageSettings>(
+    builder.Configuration.GetSection("YandexStorage"));
+
+//Services || API.Configuration
 builder.Services.AddApplicationServices();
 
-//AutoMapper
-builder.Services.AddAutoMapper(cfg => cfg.AddProfile<BossProfile>());
-builder.Services.AddAutoMapper(cfg => cfg.AddProfile<HeroProfile>());
+//AutoMapper || API.Configuration
+builder.Services.AddAutoMapperProfiles();
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();

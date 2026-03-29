@@ -14,7 +14,7 @@ namespace GenshinTrialGenerator.Application.Services.HeroServices
         public async Task<PagedResponse<HeroDto>> RunAsync(GetDataOptionsRequest request)
         {
             var (heroes, total) = await repository.GetAllHeroesAsync(request.Page, request.PageSize, request.Search, request.Sort, request.Element);
-
+            Console.WriteLine($"-------HEROES COUNT: {heroes?.Count()}");
             var heroesDto = mapper.Map<List<HeroDto>>(heroes);
 
             return new PagedResponse<HeroDto>

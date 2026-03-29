@@ -7,7 +7,7 @@ using System.Text;
 
 namespace GenshinTrialGenerator.Application.Services.BossServices
 {
-    public class DeleteBossService(IBossRepository repository) : IDeleteBossService
+    public class DeleteBossService(IBossRepository repository, IStorageService storage) : IDeleteBossService
     {
         public async Task RunAsync(Guid guid)
         {
@@ -15,6 +15,9 @@ namespace GenshinTrialGenerator.Application.Services.BossServices
 
             if (boss == null)
                 throw new GeneratorNotFoundException("Hero not found");
+
+            if (!string.IsNullOrEmpty(boss.PhotoUrl))
+                await storage.DeleteAsync(boss.PhotoUrl);
 
             await repository.DeleteBossAsync(boss);
         }

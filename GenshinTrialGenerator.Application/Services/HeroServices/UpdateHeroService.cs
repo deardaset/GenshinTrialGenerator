@@ -9,13 +9,22 @@ using System.Text;
 
 namespace GenshinTrialGenerator.Application.Services.HeroServices
 {
-    public class UpdateHeroService(IHeroRepository repository, IMapper mapper) : IUpdateHeroService
+    public class UpdateHeroService(IHeroRepository repository, IStorageService storage, IMapper mapper) : IUpdateHeroService
     {
         public async Task<HeroDto> RunAsync(Guid guid, UpdateHeroRequest request)
         {
             var hero = await repository.GetHeroAsync(guid);
             if (hero == null)
                 throw new GeneratorNotFoundException("Hero not found");
+
+            string? photoUrl = hero.PhotoUrl;
+            if (request.Photo != null)
+            {
+                if (!string.IsNullOrEmpty(hero.PhotoUrl))
+                    await storage.DeleteAsync(hero.PhotoUrl);
+
+                photoUrl = await storage.UploadAsync(request.Photo.OpenReadStream(), request.Photo.FileName, request.Photo.ContentType, "heroes");
+            }
 
             hero.Update(
                 name: request.Name, 
@@ -25,7 +34,8 @@ namespace GenshinTrialGenerator.Application.Services.HeroServices
                 element: request.Element,
                 model: request.Model,
                 teamBonus: request.TeamBonus,
-                role: request.Role
+                role: request.Role,
+                photoUrl: photoUrl
                 );
             
             await repository.UpdateHeroAsync(hero);

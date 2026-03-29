@@ -16,5 +16,6 @@ namespace GenshinTrialGenerator.Application.DTOs.Hero
         public HeroModelType Model { get; set; }
         public HeroTeamBonusType TeamBonus { get; set; }
         public HeroRolesType Role { get; set; }
+        public string? PhotoUrl { get; set; }
     }
 }

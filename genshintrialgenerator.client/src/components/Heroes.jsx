@@ -41,7 +41,7 @@ export default function Heroes() {
         element: element || undefined
       });
       setHeroes(data.items ?? data);
-      setTotal(data.total  ?? (data.items ?? data).length);
+      setTotal(data.totalCount  ?? (data.items ?? data).length);
     } catch {
       setFetchErr('Не удалось загрузить героев.');
     } finally {
@@ -182,7 +182,7 @@ export default function Heroes() {
         </div>
       )}
 
-      {!loading && !fetchErr && displayed.length === 0 && (
+      {!loading && !fetchErr && heroes.length === 0 && (
         <div className="page-state">
           <p className="page-state__title">Герои не найдены</p>
           <p>Попробуй изменить параметры поиска.</p>

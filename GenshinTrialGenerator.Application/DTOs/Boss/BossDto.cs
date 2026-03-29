@@ -16,5 +16,6 @@ namespace GenshinTrialGenerator.Application.DTOs.Boss
         public RegionType Region { get; set; }
         public string? Location { get; set; }
         public BossCategoryType Category { get; set; }
+        public string? PhotoUrl { get; set; }
     }
 }

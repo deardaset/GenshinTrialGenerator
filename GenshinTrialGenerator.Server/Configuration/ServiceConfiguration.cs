@@ -1,11 +1,13 @@
 ﻿using GenshinTrialGenerator.Application.Services.BossServices;
 using GenshinTrialGenerator.Application.Services.HeroServices;
+using GenshinTrialGenerator.Core.Interfaces;
+using GenshinTrialGenerator.Infrastructure.Data;
 using GenshinTrialGenerator.Infrastructure.Repositories;
 using System.Runtime.CompilerServices;
 
-namespace GenshinTrialGenerator.Server.Extensions
+namespace GenshinTrialGenerator.Server.Configuration
 {
-    public static class ServiceExtensions
+    public static class ServiceConfiguration
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
@@ -21,6 +23,8 @@ namespace GenshinTrialGenerator.Server.Extensions
                 .AsMatchingInterface()
                 .WithScopedLifetime()
             );
+
+            services.AddSingleton<IStorageService, StorageService>();
 
             return services;
         }
