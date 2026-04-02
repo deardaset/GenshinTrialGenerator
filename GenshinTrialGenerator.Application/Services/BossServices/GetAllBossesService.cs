@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using GenshinTrialGenerator.Application.DTOs;
 using GenshinTrialGenerator.Application.DTOs.Boss;
 using GenshinTrialGenerator.Application.Interfaces.BossServices;
 using GenshinTrialGenerator.Core.Interfaces;
@@ -10,10 +11,17 @@ namespace GenshinTrialGenerator.Application.Services.BossServices
 {
     public class GetAllBossesService(IBossRepository repository, IMapper mapper) : IGetAllBossesService
     {
-        public async Task<List<BossDto>> RunAsync()
+        public async Task<PagedResponse<BossDto>> RunAsync(GetDataOptionsRequest request)
         {
-            var bosses = mapper.Map<List<BossDto>>(await repository.GetAllBossesAsync());
-            return bosses;
+            var (bosses, total) = await repository.GetAllBossesAsync(request.Page, request.PageSize, request.Search, request.Sort, request.Element);
+
+            var bossesDto = mapper.Map<List<BossDto>>(bosses);
+
+            return new PagedResponse<BossDto>
+            {
+                Items = bossesDto,
+                TotalCount = total
+            };
         }
     }
 }

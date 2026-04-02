@@ -1,4 +1,5 @@
-﻿using GenshinTrialGenerator.Application.DTOs.Boss;
+﻿using GenshinTrialGenerator.Application.DTOs;
+using GenshinTrialGenerator.Application.DTOs.Boss;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,6 +8,6 @@ namespace GenshinTrialGenerator.Application.Interfaces.BossServices
 {
     public interface IGetAllBossesService
     {
-        public Task<List<BossDto>> RunAsync();
+        public Task<PagedResponse<BossDto>> RunAsync(GetDataOptionsRequest request);
     }
 }

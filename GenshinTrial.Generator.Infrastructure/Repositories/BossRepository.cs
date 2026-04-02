@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Text;
 using AutoMapper;
 using GenshinTrialGenerator.Infrastructure.Entities;
+using GenshinTrialGenerator.Core.Enums;
 
 namespace GenshinTrialGenerator.Infrastructure.Repositories
 {
@@ -24,9 +25,20 @@ namespace GenshinTrialGenerator.Infrastructure.Repositories
             await context.SaveChangesAsync();
         }
 
-        public async Task<List<Boss>> GetAllBossesAsync()
+        public async Task<(List<Boss>, int total)> GetAllBossesAsync(int page, int pageSize, string? search, string? sort, string? element)
         {
-            return mapper.Map<List<Boss>>(await context.Bosses.AsNoTracking().ToListAsync());
+            var query = context.Bosses.AsNoTracking();
+
+            query = ApplyFilters(query, search, sort, element);
+
+            var total = await query.CountAsync();
+
+            var bosses = await query
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return (mapper.Map<List<Boss>>(bosses), total);
         }
 
         public async Task<Boss?> GetBossAsync(Guid guid)
@@ -38,6 +50,32 @@ namespace GenshinTrialGenerator.Infrastructure.Repositories
         {
             context.Bosses.Update(mapper.Map<BossEntity>(boss));
             await context.SaveChangesAsync();
+        }
+
+        private static IQueryable<BossEntity> ApplyFilters(IQueryable<BossEntity> query, string? search, string? sort, string? element)
+        {
+            if (!string.IsNullOrEmpty(search))
+            {
+                var term = $"%{search.Trim()}%";
+
+                query = query.Where(b =>
+                    EF.Functions.ILike(b.Name, term)
+                );
+            }
+
+            if (!string.IsNullOrEmpty(element) && Enum.TryParse<ElementType>(element, ignoreCase: true, out var parsedElement))
+            {
+                query = query.Where(b => b.DamageType == parsedElement);
+            }
+
+            query = sort?.ToLower() switch
+            {
+                "name" => query.OrderBy(b => b.Name),
+                "rarity" => query.OrderBy(b => b.Category),
+                _ => query
+            };
+
+            return query;
         }
     }
 }

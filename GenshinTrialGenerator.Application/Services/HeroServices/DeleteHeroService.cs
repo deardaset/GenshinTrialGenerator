@@ -7,7 +7,7 @@ using System.Text;
 
 namespace GenshinTrialGenerator.Application.Services.HeroServices
 {
-    public class DeleteHeroService(IHeroRepository repository) : IDeleteHeroService
+    public class DeleteHeroService(IHeroRepository repository, IStorageService storage) : IDeleteHeroService
     {
         public async Task RunAsync(Guid guid)
         {
@@ -15,6 +15,9 @@ namespace GenshinTrialGenerator.Application.Services.HeroServices
 
             if (hero == null)
                 throw new GeneratorNotFoundException("Hero not found");
+
+            if (!string.IsNullOrEmpty(hero.PhotoUrl))
+                await storage.DeleteAsync(hero.PhotoUrl);
 
             await repository.DeleteHeroAsync(hero);
         }

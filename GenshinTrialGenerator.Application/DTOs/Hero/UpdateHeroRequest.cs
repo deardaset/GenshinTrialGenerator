@@ -1,4 +1,5 @@
 ﻿using GenshinTrialGenerator.Core.Enums;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,5 +16,6 @@ namespace GenshinTrialGenerator.Application.DTOs.Hero
         public HeroModelType Model { get; set; }
         public HeroTeamBonusType TeamBonus { get; set; }
         public HeroRolesType Role { get; set; }
+        public IFormFile? Photo { get; set; }
     }
 }

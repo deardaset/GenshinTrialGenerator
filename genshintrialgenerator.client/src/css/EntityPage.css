@@ -1,0 +1,277 @@
+/* ============================================================
+   EntityPage.css — общие стили для Heroes и Bosses
+   ============================================================ */
+
+/* ---- Page container ---- */
+.page-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+/* ---- Page hero (title bar) ---- */
+.page-hero {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1.75rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-thin);
+}
+
+.page-hero__left { display: flex; flex-direction: column; gap: 4px; }
+
+.page-hero__title {
+  font-family: "Cinzel", serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--gold-light);
+  letter-spacing: 0.08em;
+  line-height: 1;
+}
+
+.page-hero__subtitle {
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ---- Add button ---- */
+.btn-add {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.55rem 1.2rem;
+  border-radius: 8px;
+  background: rgba(200, 169, 126, 0.1);
+  border: 1px solid var(--border-mid);
+  color: var(--gold-light);
+  font-family: "Cinzel", serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), transform var(--transition);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.btn-add span {
+  font-size: 1.1rem;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.btn-add:hover {
+  background: rgba(200, 169, 126, 0.18);
+  border-color: var(--gold);
+  transform: translateY(-1px);
+}
+
+/* ---- Toolbar ---- */
+.toolbar {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.75rem;
+  flex-wrap: wrap;
+}
+
+.toolbar__search {
+  position: relative;
+  flex: 1;
+  min-width: 180px;
+}
+
+.toolbar__search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.toolbar__input {
+  width: 100%;
+  background: var(--ink-soft);
+  border: 1px solid var(--border-thin);
+  border-radius: 8px;
+  padding: 0.6rem 2.2rem 0.6rem 2.1rem;
+  font-family: "Lato", sans-serif;
+  font-size: 0.88rem;
+  color: var(--text-main);
+  outline: none;
+  transition: border-color var(--transition);
+}
+
+.toolbar__input:focus { border-color: rgba(200, 169, 126, 0.45); }
+.toolbar__input::placeholder { color: var(--text-muted); opacity: 0.55; }
+
+.toolbar__clear {
+  position: absolute;
+  right: 0.6rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 4px;
+  transition: color var(--transition);
+}
+
+.toolbar__clear:hover { color: var(--text-main); }
+
+.toolbar__select {
+  background: var(--ink-soft);
+  border: 1px solid var(--border-thin);
+  border-radius: 8px;
+  padding: 0.6rem 0.85rem;
+  font-family: "Lato", sans-serif;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  outline: none;
+  cursor: pointer;
+  transition: border-color var(--transition), color var(--transition);
+  min-width: 140px;
+}
+
+.toolbar__select:focus,
+.toolbar__select:hover {
+  border-color: var(--border-mid);
+  color: var(--text-main);
+}
+
+/* ---- Cards grid ---- */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1.1rem;
+  animation: fade-in 0.3s ease;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- Page states (loading / error / empty) ---- */
+.page-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 5rem 1rem;
+  text-align: center;
+}
+
+.page-state p { font-size: 0.9rem; color: var(--text-muted); }
+.page-state .btn-ghost { padding: 0.5rem 1.5rem; }
+
+.page-state__title {
+  font-family: "Cinzel", serif !important;
+  font-size: 1rem !important;
+  color: var(--gold-light) !important;
+}
+
+.page-state--error p { color: #e2603a; }
+
+/* Spinner */
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 2px solid var(--border-thin);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ---- Pagination ---- */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.pagination__pages {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.pagination__btn {
+  padding: 0.45rem 0.85rem;
+  border-radius: 7px;
+  background: transparent;
+  border: 1px solid var(--border-thin);
+  color: var(--text-muted);
+  font-family: "Lato", sans-serif;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: all var(--transition);
+  min-width: 38px;
+}
+
+.pagination__btn:hover:not(:disabled):not(.active) {
+  border-color: var(--border-mid);
+  color: var(--text-main);
+}
+
+.pagination__btn.active {
+  background: rgba(200, 169, 126, 0.15);
+  border-color: var(--gold);
+  color: var(--gold-light);
+  font-weight: 700;
+}
+
+.pagination__btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.pagination__ellipsis {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  padding: 0 4px;
+}
+
+/* ---- Shared ghost btn (reused from panels) ---- */
+.btn-ghost {
+  padding: 0.65rem 1.2rem;
+  border-radius: 8px;
+  background: transparent;
+  border: 1px solid var(--border-thin);
+  color: var(--text-muted);
+  font-family: "Cinzel", serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: border-color var(--transition), color var(--transition);
+}
+
+.btn-ghost:hover:not(:disabled) {
+  border-color: var(--border-mid);
+  color: var(--text-main);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 600px) {
+  .page-hero { flex-direction: column; align-items: flex-start; }
+  .toolbar   { flex-direction: column; }
+  .toolbar__select { width: 100%; }
+  .cards-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+}

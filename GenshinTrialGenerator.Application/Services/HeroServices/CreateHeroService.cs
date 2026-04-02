@@ -9,10 +9,14 @@ using System.Text;
 
 namespace GenshinTrialGenerator.Application.Services.HeroServices
 {
-    public class CreateHeroService(IHeroRepository repository, IMapper mapper) : ICreateHeroService
+    public class CreateHeroService(IHeroRepository repository, IStorageService storage, IMapper mapper) : ICreateHeroService
     {
         public async Task<HeroDto> RunAsync(CreateHeroRequest request)
         {
+            string? photoUrl = null;
+            if (request.Photo != null)
+                photoUrl = await storage.UploadAsync(request.Photo.OpenReadStream(), request.Photo.FileName, request.Photo.ContentType, "heroes");
+
             var hero = new Hero(
                 name: request.Name,
                 description: request.Description,
@@ -21,7 +25,8 @@ namespace GenshinTrialGenerator.Application.Services.HeroServices
                 element: request.Element,
                 model: request.Model,
                 teamBonus: request.TeamBonus,
-                role: request.Role
+                role: request.Role,
+                photoUrl: photoUrl
                 );
 
             await repository.CreateHeroAsync(hero);

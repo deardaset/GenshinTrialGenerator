@@ -15,8 +15,9 @@ namespace GenshinTrialGenerator.Core.Models
         public HeroWeaponType Weapon { get; private set; }
         public ElementType Element { get; private set; }
         public HeroModelType Model { get; private set; }
-        public HeroTeamBonusType TeamBonus { get; private set; }
+        public HeroTeamBonusType? TeamBonus { get; private set; }
         public HeroRolesType Role { get; private set; }
+        public string? PhotoUrl { get; private set; }
 
         public Hero(
             string name,
@@ -24,10 +25,10 @@ namespace GenshinTrialGenerator.Core.Models
             HeroWeaponType weapon,
             ElementType element,
             HeroModelType model,
-            HeroTeamBonusType teamBonus,
+            HeroTeamBonusType? teamBonus,
             HeroRolesType role,
-            string? description = null
-            )
+            string? description = null,
+            string? photoUrl = null)
         {
             if (string.IsNullOrEmpty(name)) 
                 throw new ArgumentNullException("Name is required");
@@ -40,6 +41,7 @@ namespace GenshinTrialGenerator.Core.Models
             Model = model;
             TeamBonus = teamBonus;
             Role = role;
+            PhotoUrl = photoUrl;
         }
 
         public void Update(
@@ -50,8 +52,8 @@ namespace GenshinTrialGenerator.Core.Models
             ElementType? element = null,
             HeroModelType? model = null,
             HeroTeamBonusType? teamBonus = null,
-            HeroRolesType? role = null
-            )
+            HeroRolesType? role = null,
+            string? photoUrl = null)
         {
             if (name is not null) Name = name;
             if (description is not null) Description = description;
@@ -61,6 +63,7 @@ namespace GenshinTrialGenerator.Core.Models
             if (model  is not null) Model = model.Value;
             if (teamBonus is not null) TeamBonus = teamBonus.Value;
             if (role  is not null) Role = role.Value;
+            if (photoUrl is not null) PhotoUrl = photoUrl;
         }
     }
 }

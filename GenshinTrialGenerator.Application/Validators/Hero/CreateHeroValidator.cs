@@ -31,7 +31,7 @@ namespace GenshinTrialGenerator.Application.Validators.Hero
                 .IsInEnum().WithMessage("Invalid Model");
 
             RuleFor(x => x.TeamBonus)
-                .IsInEnum().WithMessage("Invalid eamBonus");
+                .IsInEnum().WithMessage("Invalid TeamBonus");
 
             RuleFor(x => x.Role)
                 .IsInEnum().WithMessage("Invalid Role");
