@@ -12,7 +12,7 @@ const ELEMENT_COLORS = {
 
 export default function EntityCard({ entity, onClick }) {
   const el = ELEMENT_COLORS[entity.element] || { label: entity.element, color: 'var(--gold)' };
-  const stars = entity.rarity || 4;
+  const stars = entity.rarity === 'FiveStar' ? 5 : 4;
 
   return (
     <div
@@ -46,7 +46,7 @@ export default function EntityCard({ entity, onClick }) {
       <div className="entity-card__footer">
         <p className="entity-card__name">{entity.name}</p>
         <div className="entity-card__stars">
-          {'★'.repeat(stars)}{'☆'.repeat(5 - stars)}
+          {'★'.repeat(stars)}
         </div>
       </div>
     </div>

@@ -14,7 +14,7 @@ namespace GenshinTrialGenerator.Application.DTOs.Hero
         public HeroWeaponType Weapon { get; set; }
         public ElementType Element { get; set; }
         public HeroModelType Model { get; set; }
-        public HeroTeamBonusType TeamBonus { get; set; }
+        public HeroTeamBonusType? TeamBonus { get; set; }
         public HeroRolesType Role { get; set; }
         public IFormFile? Photo { get; set; }
     }

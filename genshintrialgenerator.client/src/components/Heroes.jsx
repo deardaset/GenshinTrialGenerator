@@ -38,19 +38,21 @@ export default function Heroes() {
         pageSize: PAGE_SIZE,
         sort:   sortBy || undefined,
         search: search || undefined,
-        element: element || undefined
+        element: element || undefined,
       });
       setHeroes(data.items ?? data);
-      setTotal(data.totalCount  ?? (data.items ?? data).length);
+      setTotal(data.total  ?? (data.items ?? data).length);
     } catch {
       setFetchErr('Не удалось загрузить героев.');
     } finally {
       setLoading(false);
     }
-  }, [page, sortBy, search]);
+  }, [page, sortBy, search, element]);
 
   useEffect(() => { load(); }, [load]);
-  useEffect(() => { setPage(1); }, [search, element, sortBy]);
+
+  // Reset page when filters change
+  useEffect(() => { setPage(1); }, [search, element, sortBy, element]);
 
   // ── Panel helpers ────────────────────────────────────────────
   function openDetail(hero) {
@@ -67,9 +69,7 @@ export default function Heroes() {
     setPanelOpen(true);
   }
 
-  function closePanel() {
-    setPanelOpen(false);
-  }
+  function closePanel() { setPanelOpen(false); }
 
   // ── CRUD ─────────────────────────────────────────────────────
   async function handleCreate(formData) {
@@ -248,7 +248,7 @@ export default function Heroes() {
         loading={saving}
         deleting={deleting}
         errors={formErrors}
-        label="Героя"
+        entityType="hero"
       />
     </div>
   );

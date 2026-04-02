@@ -36,9 +36,9 @@ export default function Bosses() {
       const data = await getBoss({
         page,
         pageSize: PAGE_SIZE,
-        sort:   sortBy || undefined, 
-        search: search || undefined,
-        element: element || undefined
+        sortBy:   sortBy  || undefined,
+        searchBy: search  || undefined,
+        element: element  || undefined,
       });
       setBosses(data.items ?? data);
       setTotal(data.total  ?? (data.items ?? data).length);
@@ -47,10 +47,10 @@ export default function Bosses() {
     } finally {
       setLoading(false);
     }
-  }, [page, sortBy, search]);
+  }, [page, sortBy, search, element]);
 
   useEffect(() => { load(); }, [load]);
-  useEffect(() => { setPage(1); }, [search, element, sortBy]);
+  useEffect(() => { setPage(1); }, [search, element, sortBy, element]);
 
   // ── Panel helpers ────────────────────────────────────────────
   function openDetail(boss) {
@@ -180,7 +180,7 @@ export default function Bosses() {
         </div>
       )}
 
-      {!loading && !fetchErr && displayed.length === 0 && (
+      {!loading && !fetchErr && bosses.length === 0 && (
         <div className="page-state">
           <p className="page-state__title">Боссы не найдены</p>
           <p>Попробуй изменить параметры поиска.</p>
@@ -246,7 +246,7 @@ export default function Bosses() {
         loading={saving}
         deleting={deleting}
         errors={formErrors}
-        label="Босса"
+        entityType="boss"
       />
     </div>
   );

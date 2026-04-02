@@ -15,7 +15,7 @@ namespace GenshinTrialGenerator.Core.Models
         public HeroWeaponType Weapon { get; private set; }
         public ElementType Element { get; private set; }
         public HeroModelType Model { get; private set; }
-        public HeroTeamBonusType TeamBonus { get; private set; }
+        public HeroTeamBonusType? TeamBonus { get; private set; }
         public HeroRolesType Role { get; private set; }
         public string? PhotoUrl { get; private set; }
 
@@ -25,7 +25,7 @@ namespace GenshinTrialGenerator.Core.Models
             HeroWeaponType weapon,
             ElementType element,
             HeroModelType model,
-            HeroTeamBonusType teamBonus,
+            HeroTeamBonusType? teamBonus,
             HeroRolesType role,
             string? description = null,
             string? photoUrl = null)

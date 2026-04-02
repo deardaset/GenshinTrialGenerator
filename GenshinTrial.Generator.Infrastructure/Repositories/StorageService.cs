@@ -45,7 +45,7 @@ namespace GenshinTrialGenerator.Infrastructure.Repositories
 
         public async Task DeleteAsync(string fileUrl)
         {
-            var key = fileUrl.Replace($"{_settings.Endpoint}/{_settings.Bucket}", "");
+            var key = fileUrl.Replace($"{_settings.Endpoint}/{_settings.Bucket}/", "");
 
             await _s3.DeleteObjectAsync(new DeleteObjectRequest
             {

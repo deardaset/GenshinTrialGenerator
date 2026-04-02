@@ -8,7 +8,7 @@ export async function getBoss({page = 1, pageSize = 10, sort, search, element}) 
   if (search) params.append('search', search);
   if (element) params.append('element', element);
 
-  const response = await fetch(`/api/hero?${params.toString()}`);
+  const response = await fetch(`/api/boss?${params.toString()}`);
 
   if (!response.ok) {
     const jsonError = await response.json();
